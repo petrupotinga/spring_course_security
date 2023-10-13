@@ -18,20 +18,15 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource);
-
-//        UserBuilder userBuilder = User.withDefaultPasswordEncoder();
-//        auth.inMemoryAuthentication()
-//                .withUser(userBuilder.username("potinga").password("potinga").roles("EMPLOYEE"))
-//                .withUser(userBuilder.username("elena").password("elena").roles("HR"))
-//                .withUser(userBuilder.username("ivan").password("ivan").roles("MENAGER", "HR"));
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").hasAnyRole("EMPLOYEE", "HR", "MANAGER")
+                .antMatchers("/").hasAnyRole("EMPLOYEE", "HR", "MANAGER","DIRECTOR")
                 .antMatchers("/hr_info").hasRole("HR")
                 .antMatchers("/manager_info").hasRole("MANAGER")
+                .antMatchers("/director_info").hasRole("DIRECTOR")
                 .and().formLogin().permitAll();
     }
 }
