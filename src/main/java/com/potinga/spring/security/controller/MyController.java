@@ -20,4 +20,8 @@ public class MyController {
         return "view_for_managers";
     }
 
+    @GetMapping("/director_info")
+    public String getInfoOnlyForDirector() {
+        return "view_for_director";
+    }
 }
