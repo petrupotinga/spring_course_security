@@ -20,5 +20,14 @@
     Only for Managers
 </security:authorize>
 
+<br><br>
+
+<security:authorize access="hasRole('DIRECTOR')">
+    <input type="button" value="All info"
+    onclick="window.location.href = 'director_info'">
+    Only for Director
+</security:authorize>
+
+
 </body>
 </html>
